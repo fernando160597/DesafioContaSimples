@@ -2,20 +2,25 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import {validaLogin,saldoConta} from '../controllers/contaBancariaController'
+import {validaLogin,saldoConta,ultimaTransacao} from '../controllers/contaBancariaController'
 
 const app = express()
 app.use(bodyParser.json())
 
-app.get('/empresas',verifyJWT,(req,res,next)=>{
-    const dadosEmpresas = require("../mocks/empresas.json")
-    res.send(dadosEmpresas)
+app.get('/ultimaTransacao',verifyJWT,(req,res,next)=>{
+    
+    try{const values = ultimaTransacao(req)
+        res.status(200).send(values)
+    }catch(error){
+        res.status(400).send(error.message)
+    }
 })
 
 app.get('/saldo',verifyJWT,(req,res)=>{
-    
+
     try{const values = saldoConta(req)
-        res.status(200).send(values)
+        var resposta = {saldo:values.saldo}
+        res.status(200).send(resposta)
     }catch(error){
         res.status(400).send(error.message)
     }

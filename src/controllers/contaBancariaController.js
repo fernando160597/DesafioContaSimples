@@ -8,7 +8,7 @@ export const validaLogin =(body)=>{
     
     if(searchedLogin[0]!==undefined){
         
-        var id = searchedLogin[0].id 
+        var id = searchedLogin[0].empresaId 
         var token = jwt.sign({id},"keyTest",{ //verificação do token
             expiresIn:300 //tempo do token 
         })
@@ -27,8 +27,27 @@ export const saldoConta = (req) =>{
     var searchedAccount =  dadosEmpresas.filter(it=>it.empresaId === req.empresaId)
     
     if(searchedAccount[0]!==undefined){
-        return searchedAccount
-    }else{throw new Error ("Login invalido")}
+        return searchedAccount[0]
+    }else{throw new Error ("Invalid request")}
+    
+}
+
+export const ultimaTransacao = (req) =>{
+    
+    const dadosTransacoes = require('../mocks/transacoes.json')
+    
+    var transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
+    const ultima = getLast(transacoesEmpresa)
+    
+    if(ultima!==undefined){
+        return ultima
+    }else{throw new Error ("Invalid request")}
     
     
 }
+
+let getLast =  (arr = null, n = null) => {
+    if (arr == null) return void 0;
+    if (n === null) return arr[arr.length - 1];
+    return arr.slice(Math.max(arr.length - n, 0));  
+};
