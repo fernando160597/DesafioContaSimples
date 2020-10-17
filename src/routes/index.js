@@ -9,7 +9,7 @@ app.use(bodyParser.json())
  * Retorna as transacoes da empresa contida no token Jwt baseadas nos filtros
  *  de data e tipo da transação, crédito ou débito
  */
-app.get('/extrato', verifyJWT, (req, res, next) => {
+app.post('/extrato', verifyJWT, (req, res, next) => {
   try {
     const values = getByDataAndCredit(req.companyId, req.body.dataInicial,
       req.body.dataFinal, req.body.credito)
