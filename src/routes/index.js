@@ -10,10 +10,13 @@ app.use(bodyParser.json())
  *  de data e tipo da transação, crédito ou débito
  */
 app.get('/extrato', verifyJWT, (req, res, next) => {
-  var ret = getByDataAndCredit(req.companyId, req.body.dataInicial,
-    req.body.dataFinal, req.body.credito)
-
-  res.send(ret)
+  try {
+    const values = getByDataAndCredit(req.companyId, req.body.dataInicial,
+      req.body.dataFinal, req.body.credito)
+    res.status(200).send(values)
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
 })
 /**
  * Retorna as transações ordenadas por cartão da empresa contida no token Jwt
@@ -44,7 +47,7 @@ app.get('/ultimaTransacao', verifyJWT, (req, res, next) => {
 app.get('/saldo', verifyJWT, (req, res) => {
   try {
     const values = accountBalance(req.companyId)
-    var response = { saldo: values.saldo }
+    const response = { saldo: values.saldo }
     res.status(200).send(response)
   } catch (error) {
     res.status(400).send(error.message)
@@ -66,7 +69,7 @@ app.post('/login', (req, res) => {
  * verifica se o token Jwt é valido antes de acessar a rota
  */
 function verifyJWT (req, res, next) {
-  var token = req.headers['x-access-token']
+  const token = req.headers['x-access-token']
   if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' })
 
   jwt.verify(token, 'keyTest', function (err, decoded) {

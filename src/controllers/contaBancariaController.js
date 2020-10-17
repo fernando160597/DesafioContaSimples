@@ -10,8 +10,8 @@ export const loginValidation = (cnpj) => {
   const searchedLogin = companiesData.filter(it => it.cnpj === cnpj)
 
   if (searchedLogin[0] !== undefined) {
-    var id = searchedLogin[0].empresaId
-    var token = jwt.sign({ id }, 'keyTest', { // verificação do token
+    const id = searchedLogin[0].empresaId
+    const token = jwt.sign({ id }, 'keyTest', { // verificação do token
       exp: 300 // tempo do token em segundos
     })
 
@@ -54,8 +54,8 @@ export const lastTransaction = (companyId) => {
 * Retorna as transacoes da empresa logada se baseando no filtro de data inicial,
 * final e se a transação é de crédito ou não
 * * * @param {number} companyId Id da empresa
-* * * * @param {text} dataInicial data inicial do filtro
-* * * * @param {text} dataFinal data final do filtro
+* * * * @param {string} dataInicial data inicial do filtro
+* * * * @param {string} dataFinal data final do filtro
 * * * * @param {boolean} credito filtro de crédito ou não cŕedito
 */
 
@@ -70,7 +70,7 @@ export const getByDataAndCredit = (companyId, dataInicial, dataFinal, credito) =
 
   if (filter !== undefined) {
     return filter
-  } else { throw new Error('Invalid request') }
+  } else { throw new Error('erro para obter transações') }
 }
 
 /**
@@ -86,7 +86,7 @@ export const transactionsPerCard = (companyId) => {
 
   if (orderedByCard[0] !== undefined) {
     return orderedByCard
-  } else { throw new Error('Invalid request') }
+  } else { throw new Error('erro para obter transações') }
 }
 
 /**
