@@ -38,12 +38,25 @@ export const ultimaTransacao = (req) =>{
     
     var transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
     const ultima = getLast(transacoesEmpresa)
-    
     if(ultima!==undefined){
         return ultima
     }else{throw new Error ("Invalid request")}
     
+}
+
+export const filtroDataFlag = (req) =>{
     
+    const dadosTransacoes = require('../mocks/transacoes.json')
+    var transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
+    
+    var filtro = transacoesEmpresa.filter(it=>Date.parse(it.dataTransacao)
+    >= Date.parse(req.body.dataInicial)
+    && Date.parse(it.dataTransacao)<= Date.parse(req.body.dataFinal)&&
+    it.credito===req.body.credito)
+    
+    if(filtro!==undefined){
+        return filtro
+    }else{throw new Error ("Invalid request")}
 }
 
 let getLast =  (arr = null, n = null) => {

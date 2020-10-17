@@ -2,10 +2,17 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import jwt from 'jsonwebtoken'
-import {validaLogin,saldoConta,ultimaTransacao} from '../controllers/contaBancariaController'
+import {validaLogin,saldoConta,ultimaTransacao,filtroDataFlag} from '../controllers/contaBancariaController'
 
 const app = express()
 app.use(bodyParser.json())
+
+app.get('/creditoDebito',verifyJWT,(req,res,next)=>{
+
+    var ret = filtroDataFlag(req)
+    res.send(ret)
+
+})
 
 app.get('/ultimaTransacao',verifyJWT,(req,res,next)=>{
     
