@@ -35,7 +35,7 @@ Este é meu projeto para o desafio backend da empresa Conta Simples, este projet
 ---
 
 ### Saldo
-*POST /saldo* - Retorna o saldo da empresa do token JWT
+*GET /saldo* - Retorna o saldo da empresa do token JWT
 ---
 #### Parâmetros: 
 | Key            | Local    | Descrição         | Value                     | 
@@ -53,7 +53,7 @@ Este é meu projeto para o desafio backend da empresa Conta Simples, este projet
 ---
 
 ### Última transação
-*POST /ultimaTransacao* - Retorna a ultima transação da empresa do token JWT
+*GET /ultimaTransacao* - Retorna a ultima transação da empresa do token JWT
 ---
 #### Parâmetros: 
 | Key            | Local    | Descrição         | Value                     | 
@@ -71,7 +71,7 @@ Este é meu projeto para o desafio backend da empresa Conta Simples, este projet
 ---
 
 ### Transações por cartão
-*POST /transacoesPorCartao* - Retorna as transações da empresa do token JWT ordenadas pelos cartões
+*GET /transacoesPorCartao* - Retorna as transações da empresa do token JWT ordenadas pelos cartões
 ---
 #### Parâmetros: 
 | Key            | Local    | Descrição         | Value                     | 
@@ -89,7 +89,7 @@ Este é meu projeto para o desafio backend da empresa Conta Simples, este projet
 ---
 
 ### Extrato
-*POST /extrato* - Retorna o extrato da empresa do token JWT usando os filtros de data e crédito
+*GET /extrato* - Retorna o extrato da empresa do token JWT usando os filtros de data e crédito
 ---
 #### Parâmetros: 
 | Key            | Local    | Descrição         | Value                     | 
