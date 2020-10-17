@@ -12,7 +12,7 @@ export const loginValidation = (cnpj) => {
   if (searchedLogin[0] !== undefined) {
     const id = searchedLogin[0].empresaId
     const token = jwt.sign({ id }, 'keyTest', { // verificação do token
-      expirationTime: 300 // tempo do token em segundos
+      expiresIn: 300 // tempo do token em segundos
     })
 
     const response = { auth: true, token: token }
