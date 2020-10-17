@@ -4,7 +4,7 @@ export const validaLogin =(body)=>{
     
     const dadosEmpresas = require('../mocks/empresas.json')
     
-    var searchedLogin =  dadosEmpresas.filter(it => it.cnpj === body.cnpj)
+    const searchedLogin =  dadosEmpresas.filter(it => it.cnpj === body.cnpj)
     
     if(searchedLogin[0]!==undefined){
         
@@ -24,7 +24,7 @@ export const saldoConta = (req) =>{
     
     const dadosEmpresas = require('../mocks/empresas.json')
     
-    var searchedAccount =  dadosEmpresas.filter(it=>it.empresaId === req.empresaId)
+    const searchedAccount =  dadosEmpresas.filter(it=>it.empresaId === req.empresaId)
     
     if(searchedAccount[0]!==undefined){
         return searchedAccount[0]
@@ -36,7 +36,7 @@ export const ultimaTransacao = (req) =>{
     
     const dadosTransacoes = require('../mocks/transacoes.json')
     
-    var transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
+    const transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
     const ultima = getLast(transacoesEmpresa)
     if(ultima!==undefined){
         return ultima
@@ -47,9 +47,9 @@ export const ultimaTransacao = (req) =>{
 export const filtroDataFlag = (req) =>{
     
     const dadosTransacoes = require('../mocks/transacoes.json')
-    var transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
+    const transacoesEmpresa = dadosTransacoes.filter(it=>it.empresaId === req.empresaId)
     
-    var filtro = transacoesEmpresa.filter(it=>Date.parse(it.dataTransacao)
+    const filtro = transacoesEmpresa.filter(it=>Date.parse(it.dataTransacao)
     >= Date.parse(req.body.dataInicial)
     && Date.parse(it.dataTransacao)<= Date.parse(req.body.dataFinal)&&
     it.credito===req.body.credito)
