@@ -89,7 +89,7 @@ Este é meu projeto para o desafio backend da empresa Conta Simples, este projet
 ---
 
 ### Extrato
-*GET /extrato* - Retorna o extrato da empresa do token JWT usando os filtros de data e crédito
+*POST /extrato* - Retorna o extrato da empresa do token JWT usando os filtros de data e crédito
 ---
 #### Parâmetros: 
 | Key            | Local    | Descrição         | Value                     | 
