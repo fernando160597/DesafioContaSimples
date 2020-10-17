@@ -68,7 +68,7 @@ export const getByDataAndCredit = (companyId, dataInicial, dataFinal, credito) =
     Date.parse(it.dataTransacao) <= Date.parse(dataFinal) &&
     it.credito === credito)
 
-  if (filter !== undefined) {
+  if (filter[0] !== undefined) {
     return filter
   } else { throw new Error('erro para obter transações') }
 }
